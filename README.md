@@ -71,7 +71,7 @@ Ao analisar a relação entre a qualidade do código (MCK) e o número de estrel
 
 O gráfico abaixo ilustra essa relação:
 
-<img width="1800" height="5000" alt="image" src="https://github.com/user-attachments/assets/eac7981e-b019-48a2-b309-b2424af673f1" />
+<img src="https://github.com/user-attachments/assets/eac7981e-b019-48a2-b309-b2424af673f1" width="900" height="500" />
 
 
 ## RQ02 - Maturidade x Qualidade
