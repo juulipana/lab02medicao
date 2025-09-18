@@ -37,8 +37,7 @@ Este projeto tem como objetivo estudar as qualidades de sistemas open-source. O 
      * **DIT**: O Depth of Inheritance Tree (DIT) ou Profundidade da Árvore de Herança mede a  profundidade da árvore de herança. Ou seja, mede a quantidade de níveis que uma classe está abaixo da raiz na herança e valores maiores indicam maior complexidade e maior dependência.
      * **LCOM**: O Lack of Cohesion of Methods (LCOM) ou Falta de Coesão dos Métodos mede a falta de coesão entre os métodos. Valores altos indicam que a classe possui métodos pouco relacionados entre si, sugerindo baixa coesão e potencial fragilidade na organização do código.
      * **WMC**: O Weighted Methods per Class (WMC) ou ou Métodos Ponderados por Classe mede a complexidade de uma classe somando a complexidade de seus métodos, indicando quão difícil ela é de entender e manter.
-
-       
+     
 4. **Coleta de Dados**
    * Os dados dos repositórios serão coletados usando a **API do GitHub (REST ou GraphQL)**.
    * A ferramenta **CK** será usada para analisar o código e gerar arquivos `.csv` com as métricas de qualidade.
@@ -75,6 +74,21 @@ O gráfico abaixo ilustra essa relação:
 
 ## RQ02 - Maturidade x Qualidade
 
+Após analisar os dados obtidos, pudemos concluir o seguinte acerca dos repositórios de acordo com sua maturidade:
+
+1. Embora a distribuição não seja completamente homogênea, observa-se que os valores mais altos de WMC estão concentrados na metade dos repositórios mais maduros, com idades entre 12 e 14 anos. Por outro lado, poucos repositórios mais novos apresentam alta complexidade, com exceção de três casos destacados.
+2. Observa-se também uma relativa homogeneidade de LCOM entre os repositórios, independentemente da idade. Isso indica que, para a maioria dos repositórios, há boa coesão entre os métodos, mesmo nos projetos mais recentes.
+3. Nos repositórios mais maduros, verifica-se um alto CBO, especialmente nos que têm mais de 10 anos, enquanto repositórios mais novos apresentam valores menores, com poucas exceções. Um CBO elevado pode indicar que uma classe depende de muitas outras, o que pode aumentar a complexidade do sistema e dificultar testes e manutenção e aumentar o WMC geral.
+
+Sendo assim, softwares maduros possuem maior qualidade?
+
+Não necessariamente.
+
+Repositórios mais velhos tendem a apresentar maior complexidade e acoplamento, ainda que mantenham boa coesão entre os métodos. Em outras palavras: o fator maturidade não é suficiente por si só para garantir maior qualidade de um repositório.
+
+<img width="1600" height="500" alt="image" src="https://github.com/user-attachments/assets/b572888d-78d8-4b0b-9ccf-c35e8128b1b2" />
+
+   
 //TO-DO
 
 ## RQ03 - Atividade x Qualidade
