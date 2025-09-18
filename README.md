@@ -155,9 +155,10 @@ De modo geral, nosso estudo mostrou que não existe uma receita única para gara
 
 # Trabalhos Relacionados
 
-// TO-DO
+Para complementar esta pesquisa, consideramos o estudo Evaluating Test Quality in GitHub Repositories: A Comparative Analysis of CI/CD Practices Using GitHub Actions, que avaliou a qualidade de testes em 940 repositórios Java com e sem GitHub Actions. O estudo analisou test smells, bugs e tempo de correção, mostrando que repositórios com CI/CD apresentaram menos test smells, mas sem diferença estatisticamente significativa na resolução de bugs. Assim, CI/CD não garante melhoria automática na qualidade dos testes, mas ajuda a controlar problemas. Nosso estudo indica que maturidade, tamanho e atividade aumentam a complexidade dos repositórios, e o artigo complementa ao evidenciar que práticas de CI/CD podem mitigar impactos negativos da complexidade, mantendo a qualidade dos testes mesmo em projetos grandes e ativos.
 
 # Referências
 
-// TO-DO
+SILVA, Edson Campolina; RODRIGUES, Rodolfo; OLIVEIRA, Johnatan; BOECHAT, Danilo; TAVARES, Cleiton. Evaluating Test Quality in GitHub Repositories: A Comparative Analysis of CI/CD Practices Using GitHub Actions. Anais do 12º Workshop de Visualização, Evolução e Manutenção de Software (VEM 2024). Sociedade Brasileira de Computação, 2024. Disponível em: https://sol.sbc.org.br/index.php/vem/article/view/30281
+.
 
