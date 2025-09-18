@@ -65,7 +65,14 @@ H4: Repositórios muito grandes, em linhas de código ou número de arquivos, te
 
 ## RQ01 - Popularidade x  Qualidade
 
-//TO-DO
+Para responder a esta pergunta, utilizamos o padrão MCK para medir a qualidade dos sistemas e relacioná-la à popularidade dos repositórios. O MCK (Maintainability, Complexity, Knowledge) é um indicador que avalia a qualidade do código com base em sua manutenibilidade, complexidade e legibilidade, fornecendo uma medida objetiva de quão fácil é compreender, modificar e evoluir o software.
+
+Ao analisar a relação entre a qualidade do código (MCK) e o número de estrelas dos repositórios, observou-se que há pouca correlação entre eles. Em outras palavras, repositórios com muitas estrelas não apresentam necessariamente maior qualidade segundo o padrão MCK.
+
+O gráfico abaixo ilustra essa relação:
+
+<img width="1800" height="5000" alt="image" src="https://github.com/user-attachments/assets/eac7981e-b019-48a2-b309-b2424af673f1" />
+
 
 ## RQ02 - Maturidade x Qualidade
 
