@@ -26,15 +26,18 @@ Este projeto tem como objetivo estudar as qualidades de sistemas open-source. O 
      * RQ4: Qual a relação entre **tamanho** do projeto e **qualidade**?
 
 3. **Definição das Métricas**
-   * **Métricas do processo de desenvolvimento:**
+   * **Dados dos repositórios:**
      * Popularidade: número de **estrelas** no GitHub.
      * Tamanho: número de **linhas de código** e **comentários**.
      * Atividade: número de **releases**.
      * Maturidade: **idade** do repositório (em anos).
+       
    * **Métricas de qualidade do código (usando CK):**
-     * **CBO**: acoplamento entre classes.
-     * **DIT**: profundidade da árvore de herança.
-     * **LCOM**: falta de coesão entre os métodos.
+     * **CBO**: Coupling Between Objects (CBO), ou Acoplamento entre Objeto, mede o acoplamento entre classes, valores altos indicam forte acoplamento, o que pode dificultar manutenção e reutilização.
+     * **DIT**: O Depth of Inheritance Tree (DIT) ou Profundidade da Árvore de Herança mede a  profundidade da árvore de herança. Ou seja, mede a quantidade de níveis que uma classe está abaixo da raiz na herança e valores maiores indicam maior complexidade e maior dependência.
+     * **LCOM**: O Lack of Cohesion of Methods (LCOM) ou Falta de Coesão dos Métodos mede a falta de coesão entre os métodos. Valores altos indicam que a classe possui métodos pouco relacionados entre si, sugerindo baixa coesão e potencial fragilidade na organização do código.
+     * **WMC**: O Weighted Methods per Class (WMC) ou ou Métodos Ponderados por Classe mede a complexidade de uma classe somando a complexidade de seus métodos, indicando quão difícil ela é de entender e manter.
+
        
 4. **Coleta de Dados**
    * Os dados dos repositórios serão coletados usando a **API do GitHub (REST ou GraphQL)**.
