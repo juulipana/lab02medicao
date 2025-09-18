@@ -17,6 +17,7 @@ Estudo sobre métricas de qualidade em repositórios open-source Java, analisand
   - [Definição das Métricas](#definição-das-métricas)
   - [Coleta de Dados](#coleta-de-dados)
 - [Hipóteses](#hipóteses)
+- [Desafios](#desafios)
 - [Análise dos Resultados](#análise-dos-resultados)
   - [RQ01 - Popularidade x Qualidade](#rq01---popularidade-x-qualidade)
   - [RQ02 - Maturidade x Qualidade](#rq02---maturidade-x-qualidade)
