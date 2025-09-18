@@ -36,7 +36,7 @@ Este projeto tem como objetivo estudar as qualidades de sistemas open-source. O 
      * **DIT**: profundidade da árvore de herança.
      * **LCOM**: falta de coesão entre os métodos.
 
-4. **Coleta e Análise de Dados**
+# Hipóteses
    * Os dados dos repositórios serão coletados usando a **API do GitHub (REST ou GraphQL)**.
    * A ferramenta **CK** será usada para analisar o código e gerar arquivos `.csv` com as métricas de qualidade.
    * Por fim, será feita uma **análise comparativa** entre os dados coletados e as métricas, para responder às perguntas de pesquisa.
