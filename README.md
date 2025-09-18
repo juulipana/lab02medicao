@@ -101,9 +101,9 @@ Após analisar os dados obtidos, pudemos concluir o seguinte acerca dos reposit�
 2. Observa-se também uma relativa homogeneidade de LCOM entre os repositórios, independentemente da idade. Isso indica que, para a maioria dos repositórios, há boa coesão entre os métodos, mesmo nos projetos mais recentes.
 3. Nos repositórios mais maduros, verifica-se um alto CBO, especialmente nos que têm mais de 10 anos, enquanto repositórios mais novos apresentam valores menores, com poucas exceções. Um CBO elevado pode indicar que uma classe depende de muitas outras, o que pode aumentar a complexidade do sistema e dificultar testes e manutenção e aumentar o WMC geral.
 
-Sendo assim, softwares maduros possuem maior qualidade?
+**Sendo assim, softwares maduros possuem maior qualidade?**
 
-Não necessariamente.
+**Não necessariamente.**
 
 Repositórios mais velhos tendem a apresentar maior complexidade e acoplamento, ainda que mantenham boa coesão entre os métodos. Em outras palavras: o fator maturidade não é suficiente por si só para garantir maior qualidade de um repositório.
 
@@ -117,9 +117,9 @@ Para responder essa questão, definimos a relação entre WMC, LCOM, CBO e ativi
 2. **LCOM x Atividade**: O LCOM é baixo para ambos os grupos, mas há outliers extremos, especialmente em repositórios não ativos. Os outliers podem indicar projetos com classes muito desorganizadas ou que não foram mantidos, reforçando que projetos não ativos podem acumular problemas de qualidade estrutural.
 3. O CBO é maior e mais disperso em repositórios ativos. Não ativos tendem a ter valores mais baixos, mas ainda existem alguns outliers. Repositórios ativos apresentam mais acoplamento entre classes, provavelmente devido à adição contínua de funcionalidades e integrações. Já os não ativos têm acoplamento menor, possivelmente por estarem congelados ou menos complexos.
 
-Sendo assim, repositórios ativos tem maior qualidade?
+**Sendo assim, repositórios ativos tem maior qualidade?**
 
-Não necessariamente.
+**Não necessariamente.**
 
 Projetos ativos tendem a ser mais complexos, enquanto projetos não ativos podem estar menos acoplados, mas não necessariamente mais bem organizados. Portanto, atividade recente não garante melhor qualidade, mas pode indicar mais evolução funcional e manutenção contínua.
 
@@ -133,9 +133,9 @@ Para investigar essa questão, utilizamos o LOC (Lines of Code) como métrica de
 
 2. Já a análise de LCOM mostra que repositórios populares, independentemente do tamanho, apresentam baixa coesão. Isso sugere que mesmo projetos grandes e complexos podem manter módulos relativamente coesos, o que é um indicativo de boa organização.
 
-O que isso quer dizer?
+**O que isso quer dizer?**
 
-O aumento do tamanho de um repositório está diretamente associado a um crescimento da complexidade das classes. Em outras palavras, quanto maior o software, mais difícil pode ser mantê-lo e compreendê-lo. No entanto, a baixa LCOM em repositórios populares indica que equipes bem estruturadas conseguem preservar a coesão e a qualidade do código, mesmo em projetos grandes.
+**O aumento do tamanho de um repositório está diretamente associado a um crescimento da complexidade das classes.** Em outras palavras, quanto maior o software, mais difícil pode ser mantê-lo e compreendê-lo. No entanto, a baixa LCOM em repositórios populares indica que equipes bem estruturadas conseguem preservar a coesão e a qualidade do código, mesmo em projetos grandes.
 
 <img width="1600" height="685" alt="image" src="https://github.com/user-attachments/assets/a49c6062-4109-4bb6-94c0-e4e3d25a52ac" />
 
