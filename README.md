@@ -90,7 +90,19 @@ Repositórios mais velhos tendem a apresentar maior complexidade e acoplamento, 
 
 ## RQ03 - Atividade x Qualidade
 
-//TO-DO
+Para responder essa questão, definimos a relação entre WMC, LCOM, CBO e atividade de repositórios populares. Com isso, pudemos ver que:
+
+1. **WMC x Atividade**: Repositórios ativos apresentam uma variação maior no WMC, com alguns outliers bem altos. Repositórios não ativos têm WMC geralmente menor, mas também possuem alguns outliers. Ou seja, repositórios ativos tendem a ter classes mais complexas, possivelmente porque continuam evoluindo e acumulando funcionalidades. Porém, os outliers sugerem que alguns projetos ativos estão muito complexos, o que pode indicar necessidade de refatoração.
+2. **LCOM x Atividade**: O LCOM é baixo para ambos os grupos, mas há outliers extremos, especialmente em repositórios não ativos. Os outliers podem indicar projetos com classes muito desorganizadas ou que não foram mantidos, reforçando que projetos não ativos podem acumular problemas de qualidade estrutural.
+3. O CBO é maior e mais disperso em repositórios ativos. Não ativos tendem a ter valores mais baixos, mas ainda existem alguns outliers. Repositórios ativos apresentam mais acoplamento entre classes, provavelmente devido à adição contínua de funcionalidades e integrações. Já os não ativos têm acoplamento menor, possivelmente por estarem congelados ou menos complexos.
+
+Sendo assim, repositórios ativos tem maior qualidade?
+
+Não necessariamente.
+
+Projetos ativos tendem a ser mais complexos, enquanto projetos não ativos podem estar menos acoplados, mas não necessariamente mais bem organizados. Portanto, atividade recente não garante melhor qualidade, mas pode indicar mais evolução funcional e manutenção contínua.
+
+<img width="1600" height="500" alt="image" src="https://github.com/user-attachments/assets/6a4e41ac-72a4-4793-b53e-b2eb340ebf25" />
 
 ## RQ04 - Tamanho x Qualidade
 
