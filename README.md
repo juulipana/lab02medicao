@@ -1,5 +1,5 @@
-# Um estudo das caracteristicas de qualidade de sistemas Java
-Laboratório 02 de Medição de Software
+# Qualidade de Software em Repositórios Java - Laboratório 02
+Estudo sobre métricas de qualidade em repositórios open-source Java, analisando popularidade, maturidade, atividade e tamanho com base na ferramenta CK.
 
 # Alunos
 * Juliana Parreiras Guimarães da Cunha
