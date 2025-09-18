@@ -101,7 +101,7 @@ Após analisar os dados obtidos, pudemos concluir o seguinte acerca dos reposit�
 2. Observa-se também uma relativa homogeneidade de LCOM entre os repositórios, independentemente da idade. Isso indica que, para a maioria dos repositórios, há boa coesão entre os métodos, mesmo nos projetos mais recentes.
 3. Nos repositórios mais maduros, verifica-se um alto CBO, especialmente nos que têm mais de 10 anos, enquanto repositórios mais novos apresentam valores menores, com poucas exceções. Um CBO elevado pode indicar que uma classe depende de muitas outras, o que pode aumentar a complexidade do sistema e dificultar testes e manutenção e aumentar o WMC geral.
 
-**Sendo assim, softwares maduros possuem maior qualidade?**
+**Sendo assim, repositórios maduros possuem maior qualidade?**
 
 **Não necessariamente.**
 
