@@ -57,3 +57,21 @@ H3: Maior cobertura de testes, redução da dívida técnica e resolução mais 
 RQ04 – Qual a relação entre o tamanho dos repositórios e as suas características de
 qualidade?
 H4: Repositórios muito grandes, em linhas de código ou número de arquivos, tendem a ter maior complexidade e menor cobertura de testes.
+
+# Análise dos Resultados
+
+## RQ01 - Popularidade x  Qualidade
+
+//TO-DO
+
+## RQ02 - Maturidade x Qualidade
+
+//TO-DO
+
+## RQ03 - Atividade x Qualidade
+
+//TO-DO
+
+## RQ04 - Tamanho x Qualidade
+
+// TO-DO
