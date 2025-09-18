@@ -11,7 +11,7 @@ Laboratório 02 de Medição de Software
 # Objetivo
 Este projeto tem como objetivo estudar as qualidades de sistemas open-source. O foco principal é analisar aspectos da qualidade de repositórios desenvolvidos em Java, correlacionando-os com características de seu processo de desenvolvimento, sob a perspectiva de métricas de produtividade calculadas por meio da ferramenta CK. A CK é uma ferramenta que analisa códigos Java e mostra, de forma simples, quão complexo, acoplado ou organizado ele está.
 
-### Metodologia
+# Metodologia
 
 1. **Seleção dos Repositórios**
    * Serão coletados os **1.000 repositórios Java mais populares** do GitHub.
