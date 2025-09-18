@@ -7,6 +7,8 @@ import pandas as pd
 import numpy as np
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+from qualidade_de_sistemas_java.app.drivers.graph_service import GraphService
+
 CSV_FILE = "top1000_java_repos_20250910_210138.csv"
 CK_JAR = r"C:\Projects\lab02medicao\qualidade_de_sistemas_java\app\tools\ck-0.7.1-SNAPSHOT-jar-with-dependencies.jar"
 AGGREGATED_CSV = r"C:\Users\pedro.oliveira_onfly\Desktop\precisarei\ck_aggregated_results.csv"
@@ -110,6 +112,27 @@ def aggregate_ck_results(csv_file=FINAL_CSV, output_file=AGGREGATED_CSV):
     print(f"[INFO] CSV agregado salvo em: {output_file}")
     return aggregated
 
+def merge_ck_with_metadata(
+    ck_file=AGGREGATED_CSV,
+    metadata_file=CSV_FILE,
+    output_file=os.path.join(OUTPUT_DIR, "ck_with_metadata.csv")
+):
+    # Lê os dois CSVs
+    df_ck = pd.read_csv(ck_file)
+    df_meta = pd.read_csv(metadata_file)
+
+    # Faz o merge pelo nome do repositório
+    merged = df_ck.merge(
+        df_meta,
+        left_on="repository",   # coluna que veio do CK
+        right_on="name",        # coluna que veio do GitHub
+        how="inner"             # só mantém os que existem em ambos
+    )
+
+    # Salva resultado
+    merged.to_csv(output_file, index=False)
+    print(f"[INFO] Merge concluído. Arquivo salvo em: {output_file}")
+    return merged
 
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -127,5 +150,9 @@ def main():
                 print(f"[ERRO] Exceção em thread: {e}")
 
 if __name__ == "__main__":
-    aggregate_ck_results()
-    #main()
+    gs = GraphService("C:\Projects\lab02medicao\qualidade_de_sistemas_java\ck_results\JavaGuide\ck_with_metadata.csv")
+
+    gs.plot_rq1_correlation()
+    gs.plot_rq2_maturity()
+    gs.plot_rq3_activity()
+    gs.plot_rq4_size()
