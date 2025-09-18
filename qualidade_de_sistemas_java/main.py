@@ -1,111 +1,158 @@
 import csv
 import os
+import shutil
 import subprocess
-from datetime import datetime
+import stat
 import pandas as pd
-import matplotlib.pyplot as plt
+import numpy as np
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+from qualidade_de_sistemas_java.app.drivers.graph_service import GraphService
 
 CSV_FILE = "top1000_java_repos_20250910_210138.csv"
 CK_JAR = r"C:\Projects\lab02medicao\qualidade_de_sistemas_java\app\tools\ck-0.7.1-SNAPSHOT-jar-with-dependencies.jar"
+AGGREGATED_CSV = r"C:\Users\pedro.oliveira_onfly\Desktop\precisarei\ck_aggregated_results.csv"
+
 OUTPUT_DIR = r"C:\Users\pedro.oliveira_onfly\Desktop\precisarei"
 CK_RESULTS_DIR = os.path.join(OUTPUT_DIR, "ck_results")
+FINAL_CSV = os.path.join(OUTPUT_DIR, "ck_all_results.csv")
+MAX_WORKERS = 4
+
 JAVA_PATH = r"C:\Program Files\Java\jdk-24\bin\java.exe"
 
 def clone_repo(repo_url, repo_name):
     repo_path = os.path.join(OUTPUT_DIR, repo_name)
     if not os.path.exists(repo_path):
-        print(f"Clonando {repo_name}...")
-        subprocess.run(["git", "clone", repo_url, repo_path], check=True)
+        print(f"[INFO] Clonando {repo_name}...")
+        subprocess.run(["git", "clone", "--depth", "1", repo_url, repo_path], check=True)
     else:
-        print(f"{repo_name} já existe, pulando clone.")
+        print(f"[INFO] {repo_name} já existe, reutilizando.")
     return repo_path
 
 def run_ck(repo_path, repo_name):
-    print(f"Rodando CK no {repo_name}...")
     ck_output = os.path.join(CK_RESULTS_DIR, repo_name)
-    os.makedirs(ck_output, exist_ok=True)
+    class_csv = os.path.join(ck_output, "class.csv")
 
+    # se já tem resultados, pula
+    if os.path.exists(class_csv):
+        print(f"[INFO] {repo_name} já processado, pulando CK.")
+        return ck_output
+
+    print(f"[INFO] Rodando CK no {repo_name}...")
+    os.makedirs(ck_output, exist_ok=True)
     subprocess.run([
         JAVA_PATH, "-jar", CK_JAR, repo_path, "true", "0", "false"
     ], cwd=ck_output, check=True)
+    return ck_output
 
+def append_results(repo_name, ck_output):
     class_csv = os.path.join(ck_output, "class.csv")
-    if os.path.exists(class_csv):
-        df_ck = pd.read_csv(class_csv)
-        loc_total = df_ck['LOC'].sum() if 'LOC' in df_ck.columns else 0
-    else:
-        loc_total = 0
-    return loc_total
+    if not os.path.exists(class_csv):
+        print(f"[WARN] Não encontrei métricas em {repo_name}")
+        return
 
-def analisar_repositorios(csv_file, ck_results_summary_file):
-    df_repos = pd.read_csv(csv_file)
-    df_repos['created_at'] = pd.to_datetime(df_repos['created_at'])
-    df_repos['updated_at'] = pd.to_datetime(df_repos['updated_at'])
-    df_repos['idade_dias'] = (df_repos['updated_at'] - df_repos['created_at']).dt.days
-    df_repos['atividade'] = df_repos['stargazers_count'] + df_repos['open_issues']
+    with open(class_csv, newline="", encoding="utf-8") as infile:
+        reader = csv.DictReader(infile)
 
-    df_ck = pd.read_csv(ck_results_summary_file)
-    df = pd.merge(df_repos, df_ck, left_on='name', right_on='repo_name', how='inner')
+        # cria o final se não existir
+        write_header = not os.path.exists(FINAL_CSV)
+        with open(FINAL_CSV, "a", newline="", encoding="utf-8") as outfile:
+            fieldnames = ["repository"] + reader.fieldnames
+            writer = csv.DictWriter(outfile, fieldnames=fieldnames)
 
-    corr_atividade = df['idade_dias'].corr(df['atividade'])
-    corr_loc = df['idade_dias'].corr(df['loc_total'])
-    print(f"Correlação Idade x Atividade: {corr_atividade:.3f}")
-    print(f"Correlação Idade x LOC: {corr_loc:.3f}")
+            if write_header:
+                writer.writeheader()
 
-    plt.figure(figsize=(12,5))
-    plt.subplot(1,2,1)
-    plt.scatter(df['idade_dias'], df['atividade'], alpha=0.6)
-    plt.xlabel("Idade do Repositório (dias)")
-    plt.ylabel("Atividade (stars + issues)")
-    plt.title("Idade x Atividade")
+            for row in reader:
+                row["repository"] = repo_name
+                writer.writerow(row)
 
-    plt.subplot(1,2,2)
-    plt.scatter(df['idade_dias'], df['loc_total'], alpha=0.6, color='orange')
-    plt.xlabel("Idade do Repositório (dias)")
-    plt.ylabel("LOC Total")
-    plt.title("Idade x Tamanho (LOC)")
-    plt.tight_layout()
-    plt.show()
+def delete_repo(repo_path, repo_name):
+    try:
+        shutil.rmtree(repo_path, onerror=handle_remove_readonly)
+        print(f"[INFO] Repositório {repo_name} removido com sucesso.")
+    except Exception as e:
+        print(f"[ERRO] Falha ao remover {repo_name}: {e}")
 
-    bins = [0, 365, 3*365, 5*365, 10*365, df['idade_dias'].max()]
-    labels = ["0-1a", "1-3a", "3-5a", "5-10a", ">10a"]
-    df['faixa_idade'] = pd.cut(df['idade_dias'], bins=bins, labels=labels)
+def handle_remove_readonly(func, path, exc_info):
+    os.chmod(path, stat.S_IWRITE)
+    func(path)
 
-    plt.figure(figsize=(12,5))
-    plt.subplot(1,2,1)
-    df.boxplot(column='atividade', by='faixa_idade', grid=False)
-    plt.title("Atividade por Faixa de Idade")
-    plt.suptitle("")
+def process_repo(row):
+    repo_url = row["html_url"]
+    repo_name = row["name"]
+    try:
+        repo_path = clone_repo(repo_url, repo_name)
+        ck_output = run_ck(repo_path, repo_name)
+        append_results(repo_name, ck_output)
+    except Exception as e:
+        print(f"[ERRO] Falha ao processar {repo_name}: {e}")
+    finally:
+        delete_repo(os.path.join(OUTPUT_DIR, repo_name), repo_name)
 
-    plt.subplot(1,2,2)
-    df.boxplot(column='loc_total', by='faixa_idade', grid=False)
-    plt.title("LOC por Faixa de Idade")
-    plt.suptitle("")
-    plt.tight_layout()
-    plt.show()
 
+def aggregate_ck_results(csv_file=FINAL_CSV, output_file=AGGREGATED_CSV):
+    # Lê o CSV
+    df = pd.read_csv(csv_file)
+
+    # Substitui NaN por 0
+    df = df.replace({np.nan: 0})
+
+    # Identifica colunas numéricas para somar
+    numeric_cols = df.columns.drop("repository")
+
+    # Converte todas para float (ou int, dependendo da necessidade)
+    df[numeric_cols] = df[numeric_cols].apply(pd.to_numeric, errors='coerce').fillna(0)
+
+    # Agrupa por repository e soma as colunas
+    aggregated = df.groupby("repository", as_index=False)[numeric_cols].sum()
+
+    # Salva o CSV final
+    aggregated.to_csv(output_file, index=False)
+    print(f"[INFO] CSV agregado salvo em: {output_file}")
+    return aggregated
+
+def merge_ck_with_metadata(
+    ck_file=AGGREGATED_CSV,
+    metadata_file=CSV_FILE,
+    output_file=os.path.join(OUTPUT_DIR, "ck_with_metadata.csv")
+):
+    # Lê os dois CSVs
+    df_ck = pd.read_csv(ck_file)
+    df_meta = pd.read_csv(metadata_file)
+
+    # Faz o merge pelo nome do repositório
+    merged = df_ck.merge(
+        df_meta,
+        left_on="repository",   # coluna que veio do CK
+        right_on="name",        # coluna que veio do GitHub
+        how="inner"             # só mantém os que existem em ambos
+    )
+
+    # Salva resultado
+    merged.to_csv(output_file, index=False)
+    print(f"[INFO] Merge concluído. Arquivo salvo em: {output_file}")
+    return merged
 
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs(CK_RESULTS_DIR, exist_ok=True)
 
-    ck_summary = []
-
     with open(CSV_FILE, newline="", encoding="utf-8") as csvfile:
-        reader = csv.DictReader(csvfile)
-        for i, row in enumerate(reader):
-            repo_url = row["html_url"]
-            repo_name = row["name"]
+        reader = list(csv.DictReader(csvfile))[:1000]
 
-            repo_path = clone_repo(repo_url, repo_name)
-            loc_total = run_ck(repo_path, repo_name)
-
-            ck_summary.append({"repo_name": repo_name, "loc_total": loc_total})
-
-    ck_summary_file = os.path.join(OUTPUT_DIR, "ck_results_summary.csv")
-    pd.DataFrame(ck_summary).to_csv(ck_summary_file, index=False)
-
-    analisar_repositorios(CSV_FILE, ck_summary_file)
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = [executor.submit(process_repo, row) for row in reader]
+        for future in as_completed(futures):
+            try:
+                future.result()
+            except Exception as e:
+                print(f"[ERRO] Exceção em thread: {e}")
 
 if __name__ == "__main__":
-    main()
+    gs = GraphService("C:\Projects\lab02medicao\qualidade_de_sistemas_java\ck_results\JavaGuide\ck_with_metadata.csv")
+
+    gs.plot_rq1_correlation()
+    gs.plot_rq2_maturity()
+    gs.plot_rq3_activity()
+    gs.plot_rq4_size()
