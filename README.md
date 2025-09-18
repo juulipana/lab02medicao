@@ -153,6 +153,13 @@ O aumento do tamanho de um repositório está diretamente associado a um crescim
 
 De modo geral, nosso estudo mostrou que não existe uma receita única para garantir boa qualidade de software. Fatores como popularidade, maturidade, atividade ou mesmo tamanho não nos dizem, sozinhos, se um repositório é de qualidade. Ainda assim, podemos observar que, à medida que os repositórios crescem em idade ou tamanho, eles tendem a se tornar mais complexos. Isso acontece porque, com o tempo, eles recebem mais contribuições, aumentam em linhas de código e, consequentemente, sua complexidade cresce junto.
 
+| Questão de Pesquisa (RQ) | Resposta |
+|---------------------------|----------------|
+| **RQ01: Popularidade x Qualidade** | Pouca correlação; repositórios populares não necessariamente têm maior qualidade de código. |
+| **RQ02: Maturidade x Qualidade** | Não necessariamente; repositórios mais velhos tendem a ser mais complexos e acoplados, mas mantêm boa coesão. |
+| **RQ03: Atividade x Qualidade** | Não necessariamente; projetos ativos têm maior complexidade e acoplamento, mas isso não garante melhor qualidade estrutural. |
+| **RQ04: Tamanho x Qualidade** | Repositórios maiores tendem a ter maior complexidade (WMC), mas podem manter boa coesão (LCOM), especialmente os populares. |
+
 # Trabalhos Relacionados
 
 Para complementar esta pesquisa, consideramos o estudo Evaluating Test Quality in GitHub Repositories: A Comparative Analysis of CI/CD Practices Using GitHub Actions, que avaliou a qualidade de testes em 940 repositórios Java com e sem GitHub Actions. O estudo analisou test smells, bugs e tempo de correção, mostrando que repositórios com CI/CD apresentaram menos test smells, mas sem diferença estatisticamente significativa na resolução de bugs. Assim, CI/CD não garante melhoria automática na qualidade dos testes, mas ajuda a controlar problemas. Nosso estudo indica que maturidade, tamanho e atividade aumentam a complexidade dos repositórios, e o artigo complementa ao evidenciar que práticas de CI/CD podem mitigar impactos negativos da complexidade, mantendo a qualidade dos testes mesmo em projetos grandes e ativos.
