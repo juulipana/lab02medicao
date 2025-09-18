@@ -8,6 +8,27 @@ Laboratório 02 de Medição de Software
 # Professor
 * Danilo de Quadros Maia Filho
 
+# Índice
+
+- [Objetivo](#objetivo)
+- [Metodologia](#metodologia)
+  - [Seleção dos Repositórios](#seleção-dos-repositórios)
+  - [Questões de Pesquisa](#questões-de-pesquisa)
+  - [Definição das Métricas](#definição-das-métricas)
+  - [Coleta de Dados](#coleta-de-dados)
+- [Hipóteses](#hipóteses)
+- [Análise dos Resultados](#análise-dos-resultados)
+  - [RQ01 - Popularidade x Qualidade](#rq01---popularidade-x-qualidade)
+  - [RQ02 - Maturidade x Qualidade](#rq02---maturidade-x-qualidade)
+  - [RQ03 - Atividade x Qualidade](#rq03---atividade-x-qualidade)
+  - [RQ04 - Tamanho x Qualidade](#rq04---tamanho-x-qualidade)
+- [Relações de maturidade](#relações-de-maturidade)
+  - [Repositórios mais velhos possuem maior contribuição?](#repositórios-mais-velhos-possuem-maior-contribuição)
+  - [Repositórios mais velhos são maiores?](#repositórios-mais-velhos-são-maiores)
+- [Conclusão](#conclusão)
+- [Trabalhos Relacionados](#trabalhos-relacionados)
+- [Referências](#referências)
+
 # Objetivo
 Este projeto tem como objetivo estudar as qualidades de sistemas open-source. O foco principal é analisar aspectos da qualidade de repositórios desenvolvidos em Java, correlacionando-os com características de seu processo de desenvolvimento, sob a perspectiva de métricas de produtividade calculadas por meio da ferramenta CK. A CK é uma ferramenta que analisa códigos Java e mostra, de forma simples, quão complexo, acoplado ou organizado ele está.
 
