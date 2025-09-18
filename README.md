@@ -118,3 +118,15 @@ O aumento do tamanho de um repositório está diretamente associado a um crescim
 
 <img width="1600" height="685" alt="image" src="https://github.com/user-attachments/assets/a49c6062-4109-4bb6-94c0-e4e3d25a52ac" />
 
+# Conclusão
+
+// TO-DO
+
+# Trabalhos Relacionados
+
+// TO-DO
+
+# Referências
+
+// TO-DO
+
