@@ -11,7 +11,7 @@ Laboratório 02 de Medição de Software
 # Objetivo
 Este projeto tem como objetivo estudar as qualidades de sistemas open-source. O foco principal é analisar aspectos da qualidade de repositórios desenvolvidos em Java, correlacionando-os com características de seu processo de desenvolvimento, sob a perspectiva de métricas de produtividade calculadas por meio da ferramenta CK. A CK é uma ferramenta que analisa códigos Java e mostra, de forma simples, quão complexo, acoplado ou organizado ele está.
 
-### Metodologia
+# Metodologia
 
 1. **Seleção dos Repositórios**
    * Serão coletados os **1.000 repositórios Java mais populares** do GitHub.
@@ -26,18 +26,55 @@ Este projeto tem como objetivo estudar as qualidades de sistemas open-source. O 
      * RQ4: Qual a relação entre **tamanho** do projeto e **qualidade**?
 
 3. **Definição das Métricas**
-   * **Métricas do processo de desenvolvimento:**
+   * **Dados dos repositórios:**
      * Popularidade: número de **estrelas** no GitHub.
      * Tamanho: número de **linhas de código** e **comentários**.
      * Atividade: número de **releases**.
      * Maturidade: **idade** do repositório (em anos).
+       
    * **Métricas de qualidade do código (usando CK):**
-     * **CBO**: acoplamento entre classes.
-     * **DIT**: profundidade da árvore de herança.
-     * **LCOM**: falta de coesão entre os métodos.
+     * **CBO**: Coupling Between Objects (CBO), ou Acoplamento entre Objeto, mede o acoplamento entre classes, valores altos indicam forte acoplamento, o que pode dificultar manutenção e reutilização.
+     * **DIT**: O Depth of Inheritance Tree (DIT) ou Profundidade da Árvore de Herança mede a  profundidade da árvore de herança. Ou seja, mede a quantidade de níveis que uma classe está abaixo da raiz na herança e valores maiores indicam maior complexidade e maior dependência.
+     * **LCOM**: O Lack of Cohesion of Methods (LCOM) ou Falta de Coesão dos Métodos mede a falta de coesão entre os métodos. Valores altos indicam que a classe possui métodos pouco relacionados entre si, sugerindo baixa coesão e potencial fragilidade na organização do código.
+     * **WMC**: O Weighted Methods per Class (WMC) ou ou Métodos Ponderados por Classe mede a complexidade de uma classe somando a complexidade de seus métodos, indicando quão difícil ela é de entender e manter.
 
-4. **Coleta e Análise de Dados**
+       
+4. **Coleta de Dados**
    * Os dados dos repositórios serão coletados usando a **API do GitHub (REST ou GraphQL)**.
    * A ferramenta **CK** será usada para analisar o código e gerar arquivos `.csv` com as métricas de qualidade.
    * Por fim, será feita uma **análise comparativa** entre os dados coletados e as métricas, para responder às perguntas de pesquisa.
 
+# Hipóteses
+RQ01 – Qual a relação entre a popularidade dos repositórios e as suas características de
+qualidade?
+H1: Repositórios com mais estrelas (mais populares) costumam apresentar código mais atualizado e documentação mais completa.
+
+RQ02 – Qual a relação entre a maturidade do repositórios e as suas características de
+qualidade?
+H2: Projetos mais antigos são mais prováveis de ter uma maior confirmidade com práticas CI/CD. Além disso, possuem quantidade menor de dívidas técnicas não pagas.
+
+RQ03 – Qual a relação entre a atividade dos repositórios e as suas características de
+qualidade?
+H3: Maior cobertura de testes, redução da dívida técnica e resolução mais rápida de bugs costumam aparecer em repositórios que recebem commits com frequência.
+
+RQ04 – Qual a relação entre o tamanho dos repositórios e as suas características de
+qualidade?
+H4: Repositórios muito grandes, em linhas de código ou número de arquivos, tendem a ter maior complexidade e menor cobertura de testes.
+
+# Análise dos Resultados
+
+## RQ01 - Popularidade x  Qualidade
+
+//TO-DO
+
+## RQ02 - Maturidade x Qualidade
+
+//TO-DO
+
+## RQ03 - Atividade x Qualidade
+
+//TO-DO
+
+## RQ04 - Tamanho x Qualidade
+
+// TO-DO
