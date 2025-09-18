@@ -139,16 +139,6 @@ Para investigar essa questão, utilizamos o LOC (Lines of Code) como métrica de
 
 <img width="1600" height="685" alt="image" src="https://github.com/user-attachments/assets/a49c6062-4109-4bb6-94c0-e4e3d25a52ac" />
 
-# Relações de maturidade
-
-## Repositórios mais velhos possuem maior contribuição?
-
-// TO-DO
-
-## Repositórios mais velhos são maiores?
-
-// TO-DO
-
 # Conclusão
 
 De modo geral, nosso estudo mostrou que não existe uma receita única para garantir boa qualidade de software. Fatores como popularidade, maturidade, atividade ou mesmo tamanho não nos dizem, sozinhos, se um repositório é de qualidade. Ainda assim, podemos observar que, à medida que os repositórios crescem em idade ou tamanho, eles tendem a se tornar mais complexos. Isso acontece porque, com o tempo, eles recebem mais contribuições, aumentam em linhas de código e, consequentemente, sua complexidade cresce junto.
