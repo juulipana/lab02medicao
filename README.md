@@ -88,13 +88,21 @@ Repositórios mais velhos tendem a apresentar maior complexidade e acoplamento, 
 
 <img width="1600" height="500" alt="image" src="https://github.com/user-attachments/assets/b572888d-78d8-4b0b-9ccf-c35e8128b1b2" />
 
-   
-//TO-DO
-
 ## RQ03 - Atividade x Qualidade
 
 //TO-DO
 
 ## RQ04 - Tamanho x Qualidade
 
-// TO-DO
+Para investigar essa questão, utilizamos o LOC (Lines of Code) como métrica de tamanho e analisamos sua relação com indicadores de qualidade, como WMC (Weighted Methods per Class) e LCOM (Lack of Cohesion of Methods):
+
+1. O gráfico que relaciona LOC e WMC mostra uma tendência linear e crescente: repositórios maiores tendem a ter classes com mais métodos, indicando maior complexidade à medida que o tamanho aumenta.
+
+2. Já a análise de LCOM mostra que repositórios populares, independentemente do tamanho, apresentam baixa coesão. Isso sugere que mesmo projetos grandes e complexos podem manter módulos relativamente coesos, o que é um indicativo de boa organização.
+
+O que isso quer dizer?
+
+O aumento do tamanho de um repositório está diretamente associado a um crescimento da complexidade das classes. Em outras palavras, quanto maior o software, mais difícil pode ser mantê-lo e compreendê-lo. No entanto, a baixa LCOM em repositórios populares indica que equipes bem estruturadas conseguem preservar a coesão e a qualidade do código, mesmo em projetos grandes.
+
+<img width="1600" height="685" alt="image" src="https://github.com/user-attachments/assets/a49c6062-4109-4bb6-94c0-e4e3d25a52ac" />
+
