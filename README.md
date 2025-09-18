@@ -60,6 +60,10 @@ Este projeto tem como objetivo estudar as qualidades de sistemas open-source. O 
    * Os dados dos repositórios serão coletados usando a **API do GitHub (REST ou GraphQL)**.
    * A ferramenta **CK** será usada para analisar o código e gerar arquivos `.csv` com as métricas de qualidade.
    * Por fim, será feita uma **análise comparativa** entre os dados coletados e as métricas, para responder às perguntas de pesquisa.
+   
+# Desafios
+* Quantidade de repositórios;
+* Compilação do CK;
 
 # Hipóteses
 RQ01 – Qual a relação entre a popularidade dos repositórios e as suas características de
